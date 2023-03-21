@@ -5,11 +5,11 @@ CXCommenter is an open source Visual Studio extension written in C# that aims to
 # Installation
 To install CXCommenter, follow these steps:
 
-Clone the CXCommenter repository to your local machine
-Open the CXCommenter.sln solution file in Visual Studio
-Build the solution
-Double-click the CXCommenter.vsix file in the bin/Debug or bin/Release folder to install the extension
-Restart Visual Studio
+    1.  Clone the CXCommenter repository to your local machine
+    2.  Open the CXCommenter.sln solution file in Visual Studio
+    3.  Build the solution
+    4.  Double-click the CXCommenter.vsix file in the bin/Debug or bin/Release folder to install the extension
+    5.  Restart Visual Studio
 
 # Usage
 Once installed, CXCommenter can be accessed from the Visual Studio menu under "Tools > CXCommenter". From there, you can select the type of comment you want to create, such as a summary comment or a parameter comment, and enter the necessary information. CXCommenter will generate the comment for you and insert it into your code.

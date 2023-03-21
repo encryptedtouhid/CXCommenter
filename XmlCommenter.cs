@@ -50,26 +50,34 @@ namespace CXCommenter
                             // Loop through all members in the type
                             foreach (CodeElement memberElement in codeType.Members)
                             {
+                                CodeElement2 codeElement2 = (CodeElement2)memberElement;
                                 // Check if the member is a method or property
-                                if (memberElement.Kind == vsCMElement.vsCMElementFunction ||
-                                    memberElement.Kind == vsCMElement.vsCMElementProperty)
+                                if (memberElement.Kind == vsCMElement.vsCMElementFunction)
+                                {   
+                                    //string comment = "/// <summary>" + Environment.NewLine +
+                                    //                 "/// TODO: Add XML comment for " + codeElement2.Name + Environment.NewLine +
+                                    //                 "/// </summary>" + Environment.NewLine;
+                                    //codeElement2.StartPoint.CreateEditPoint().Insert(comment);
+
+                                    //// Format the XML comment
+                                    //codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
+
+                                    //// Save the changes to the code file
+                                    //codeElement2.ProjectItem.Save();
+
+                                }
+                                else if(memberElement.Kind == vsCMElement.vsCMElementProperty)
                                 {
-                                    CodeElement2 codeElement2 = (CodeElement2)memberElement;
+                                    string comment = "/// <summary>" + Environment.NewLine +
+                                                   "/// TODO: Add XML comment for " + codeElement2.Name + Environment.NewLine +
+                                                   "/// </summary>" + Environment.NewLine;
+                                    codeElement2.StartPoint.CreateEditPoint().Insert(comment);
 
-                                    // Check if the member already has an XML comment
-                                    if (!codeElement2.StartPoint.CreateEditPoint().GetLines(Convert.ToInt32(codeElement2.StartPoint), Convert.ToInt32(codeElement2.EndPoint)).Contains("///"))
-                                    {
-                                        string comment = "/// <summary>" + Environment.NewLine +
-                                                         "/// TODO: Add XML comment for " + codeElement2.Name + Environment.NewLine +
-                                                         "/// </summary>" + Environment.NewLine;
-                                        codeElement2.StartPoint.CreateEditPoint().Insert(comment);
+                                    // Format the XML comment
+                                    codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
 
-                                        // Format the XML comment
-                                        codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
-
-                                        // Save the changes to the code file
-                                        codeElement2.ProjectItem.Save();
-                                    }
+                                    // Save the changes to the code file
+                                    codeElement2.ProjectItem.Save();
                                 }
                             }
                         }

@@ -53,17 +53,30 @@ namespace CXCommenter
                                 CodeElement2 codeElement2 = (CodeElement2)memberElement;
                                 // Check if the member is a method or property
                                 if (memberElement.Kind == vsCMElement.vsCMElementFunction)
-                                {   
-                                    //string comment = "/// <summary>" + Environment.NewLine +
-                                    //                 "/// TODO: Add XML comment for " + codeElement2.Name + Environment.NewLine +
-                                    //                 "/// </summary>" + Environment.NewLine;
-                                    //codeElement2.StartPoint.CreateEditPoint().Insert(comment);
+                                {
+                                    CodeFunction codeFunction = (CodeFunction)memberElement;
+                                    string functionName = codeFunction.Name;
+                                    string returnType = codeFunction.Type.AsString;
+                                    List<string> parameters = new List<string>();
+                                    foreach (CodeParameter parameter in codeFunction.Parameters)
+                                    {
+                                        parameters.Add(parameter.Type.AsString + " " + parameter.Name);
+                                    }
 
-                                    //// Format the XML comment
-                                    //codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
+                                    string comment = "/// <summary>" + Environment.NewLine +
+                                                  "/// TODO: Add XML comment for " + functionName + Environment.NewLine +
+                                                  "/// </summary>" + Environment.NewLine +
+                                                  "///<param>" + parameters[0]  + "</param>" + Environment.NewLine +
+                                                  "///<return>" + returnType + "</return>" + Environment.NewLine ;
+                                               
+                                    codeElement2.StartPoint.CreateEditPoint().Insert(comment);
 
-                                    //// Save the changes to the code file
-                                    //codeElement2.ProjectItem.Save();
+                                    // Format the XML comment
+                                    codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
+
+                                    // Save the changes to the code file
+                                    codeElement2.ProjectItem.Save();
+
 
                                 }
                                 else if(memberElement.Kind == vsCMElement.vsCMElementProperty)

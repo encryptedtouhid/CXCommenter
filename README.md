@@ -24,8 +24,4 @@ Provides a customizable comment template that can be modified to match your team
 Includes IntelliSense support to quickly generate comments based on your code
 Integrates with Visual Studio's code editor for a seamless commenting experience
 
-# Contributing
-If you'd like to contribute to CXCommenter, please feel free to submit a pull request or open an issue on our GitHub repository. We welcome contributions of all kinds, from bug reports to feature requests to code contributions.
 
-# License
-CXCommenter is licensed under the MIT License. Feel free to use it in your own projects or modify it to suit your needs.

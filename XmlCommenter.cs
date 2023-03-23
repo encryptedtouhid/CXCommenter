@@ -13,8 +13,9 @@ namespace CXCommenter
 {
     public class XmlCommenter
     {
+
         /// <summary>
-        /// TODO: Add XML comment for CommentSolution
+        /// Function Name - CommentSolution
         /// </summary>
         ///<returns>void</returns>
         public static void CommentSolution()
@@ -27,8 +28,9 @@ namespace CXCommenter
             }
         }
 
+
         /// <summary>
-        /// TODO: Add XML comment for CommentProject
+        /// Function Name - CommentProject
         /// </summary>
         ///<param name="EnvDTE.Project project">TODO: Describe EnvDTE.Project project here</param>
         ///<returns>void</returns>
@@ -52,8 +54,9 @@ namespace CXCommenter
         }
 
 
+
         /// <summary>
-        /// TODO: Add XML comment for IterateThroughAllCodeElements
+        /// Function Name - IterateThroughAllCodeElements
         /// </summary>
         ///<param name="EnvDTE.Project SubProject">TODO: Describe EnvDTE.Project SubProject here</param>
         ///<returns>void</returns>
@@ -117,8 +120,9 @@ namespace CXCommenter
             }
         }
 
+
         /// <summary>
-        /// TODO: Add XML comment for IterateThroughAllCodeElementsInFolder
+        /// Function Name - IterateThroughAllCodeElementsInFolder
         /// </summary>
         ///<param name="EnvDTE.ProjectItem folder">TODO: Describe EnvDTE.ProjectItem folder here</param>
         ///<returns>void</returns>
@@ -141,8 +145,9 @@ namespace CXCommenter
             }
         }
 
+
         /// <summary>
-        /// TODO: Add XML comment for CommentCodeElements
+        /// Function Name - CommentCodeElements
         /// </summary>
         ///<param name="EnvDTE.ProjectItem item">TODO: Describe EnvDTE.ProjectItem item here</param>
         ///<returns>void</returns>
@@ -161,8 +166,9 @@ namespace CXCommenter
             }
         }
 
+
         /// <summary>
-        /// TODO: Add XML comment for CommentCodeElementsInNamespace
+        /// Function Name - CommentCodeElementsInNamespace
         /// </summary>
         ///<param name="EnvDTE.CodeNamespace codeNamespace">TODO: Describe EnvDTE.CodeNamespace codeNamespace here</param>
         ///<returns>void</returns>
@@ -182,7 +188,7 @@ namespace CXCommenter
 
 
         /// <summary>
-        /// TODO: Add XML comment for CommentCodeElementsInType
+        /// Function Name - CommentCodeElementsInType
         /// </summary>
         ///<param name="EnvDTE.CodeType codeType">TODO: Describe EnvDTE.CodeType codeType here</param>
         ///<returns>void</returns>

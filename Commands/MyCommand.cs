@@ -3,8 +3,9 @@
     [Command(PackageIds.MyCommand)]
     internal sealed class MyCommand : BaseCommand<MyCommand>
     {
+        
         /// <summary>
-        /// TODO: Add XML comment for ExecuteAsync
+        /// Function Name - ExecuteAsync
         /// </summary>
         ///<param name="Microsoft.VisualStudio.Shell.OleMenuCmdEventArgs e">TODO: Describe Microsoft.VisualStudio.Shell.OleMenuCmdEventArgs e here</param>
         ///<returns>System.Threading.Tasks.Task</returns>

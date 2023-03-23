@@ -90,7 +90,7 @@ namespace CXCommenter
                                     }
 
                                     string comment = "/// <summary>" + Environment.NewLine +
-                                                  "/// TODO: Add XML comment for " + functionName + Environment.NewLine +
+                                                  "///  Funcation Name - " + functionName + Environment.NewLine +
                                                   "/// </summary>" + Environment.NewLine +
                                                   "///<param>" + parameters[0] + "</param>" + Environment.NewLine +
                                                   "///<return>" + returnType + "</return>" + Environment.NewLine;
@@ -104,7 +104,7 @@ namespace CXCommenter
                                 else if (memberElement.Kind == vsCMElement.vsCMElementProperty)
                                 {
                                     string comment = "/// <summary>" + Environment.NewLine +
-                                                   "/// TODO: Add XML comment for " + codeElement2.Name + Environment.NewLine +
+                                                   "/// Property Name - " + codeElement2.Name + Environment.NewLine +
                                                    "/// </summary>" + Environment.NewLine;
                                     codeElement2.StartPoint.CreateEditPoint().Insert(comment);
                                     codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
@@ -204,7 +204,7 @@ namespace CXCommenter
                     }
 
                     string comment = "/// <summary>" + Environment.NewLine +
-                                      "/// TODO: Add XML comment for " + functionName + Environment.NewLine +
+                                      "/// Function Name - " + functionName + Environment.NewLine +
                                       "/// </summary>" + Environment.NewLine;
                     if (parameters.Count > 0)
                     {
@@ -222,7 +222,7 @@ namespace CXCommenter
                 else if (memberElement.Kind == vsCMElement.vsCMElementProperty)
                 {
                     string comment = "/// <summary>" + Environment.NewLine +
-                                   "/// TODO: Add XML comment for " + codeElement2.Name + Environment.NewLine +
+                                   "/// Property Name - " + codeElement2.Name + Environment.NewLine +
                                    "/// </summary>" + Environment.NewLine;
                     codeElement2.StartPoint.CreateEditPoint().Insert(comment);
                     codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);

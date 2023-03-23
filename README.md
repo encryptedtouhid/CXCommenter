@@ -12,7 +12,9 @@ To install CXCommenter, follow these steps:
     5.  Restart Visual Studio
 
 # Usage
-Once installed, CXCommenter can be accessed from the Visual Studio menu under "Tools > CXCommenter". From there, you can select the type of comment you want to create, such as a summary comment or a parameter comment, and enter the necessary information. CXCommenter will generate the comment for you and insert it into your code.
+Once installed, CXCommenter can be accessed from the Visual Studio menu under "Edit > Generate Comment". 
+![](generatecomment.gif)
+
 
 # Features
 CXCommenter includes the following features:

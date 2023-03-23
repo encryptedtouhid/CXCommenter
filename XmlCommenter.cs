@@ -13,6 +13,10 @@ namespace CXCommenter
 {
     public class XmlCommenter
     {
+        /// <summary>
+        /// TODO: Add XML comment for CommentSolution
+        /// </summary>
+        ///<returns>void</returns>
         public static void CommentSolution()
         {
             DTE2 dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE2;
@@ -23,6 +27,11 @@ namespace CXCommenter
             }
         }
 
+        /// <summary>
+        /// TODO: Add XML comment for CommentProject
+        /// </summary>
+        ///<param name="EnvDTE.Project project">TODO: Describe EnvDTE.Project project here</param>
+        ///<returns>void</returns>
         public static void CommentProject(Project project)
         {
             foreach (ProjectItem item in project.ProjectItems)
@@ -43,6 +52,11 @@ namespace CXCommenter
         }
 
 
+        /// <summary>
+        /// TODO: Add XML comment for IterateThroughAllCodeElements
+        /// </summary>
+        ///<param name="EnvDTE.Project SubProject">TODO: Describe EnvDTE.Project SubProject here</param>
+        ///<returns>void</returns>
         public static void IterateThroughAllCodeElements(Project SubProject)
         {
 
@@ -103,6 +117,11 @@ namespace CXCommenter
             }
         }
 
+        /// <summary>
+        /// TODO: Add XML comment for IterateThroughAllCodeElementsInFolder
+        /// </summary>
+        ///<param name="EnvDTE.ProjectItem folder">TODO: Describe EnvDTE.ProjectItem folder here</param>
+        ///<returns>void</returns>
         public static void IterateThroughAllCodeElementsInFolder(ProjectItem folder)
         {
             foreach (ProjectItem item in folder.ProjectItems)
@@ -122,6 +141,11 @@ namespace CXCommenter
             }
         }
 
+        /// <summary>
+        /// TODO: Add XML comment for CommentCodeElements
+        /// </summary>
+        ///<param name="EnvDTE.ProjectItem item">TODO: Describe EnvDTE.ProjectItem item here</param>
+        ///<returns>void</returns>
         public static void CommentCodeElements(ProjectItem item)
         {
             if (item.FileCodeModel != null)
@@ -137,6 +161,11 @@ namespace CXCommenter
             }
         }
 
+        /// <summary>
+        /// TODO: Add XML comment for CommentCodeElementsInNamespace
+        /// </summary>
+        ///<param name="EnvDTE.CodeNamespace codeNamespace">TODO: Describe EnvDTE.CodeNamespace codeNamespace here</param>
+        ///<returns>void</returns>
         public static void CommentCodeElementsInNamespace(CodeNamespace codeNamespace)
         {
             foreach (CodeElement typeElement in codeNamespace.Members)
@@ -152,6 +181,11 @@ namespace CXCommenter
         }
 
 
+        /// <summary>
+        /// TODO: Add XML comment for CommentCodeElementsInType
+        /// </summary>
+        ///<param name="EnvDTE.CodeType codeType">TODO: Describe EnvDTE.CodeType codeType here</param>
+        ///<returns>void</returns>
         public static void CommentCodeElementsInType(CodeType codeType)
         {
             foreach (CodeElement memberElement in codeType.Members)

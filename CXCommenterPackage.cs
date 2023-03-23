@@ -13,6 +13,12 @@ namespace CXCommenter
     [Guid(PackageGuids.CXCommenterString)]
     public sealed class CXCommenterPackage : ToolkitPackage
     {
+        /// <summary>
+        /// TODO: Add XML comment for InitializeAsync
+        /// </summary>
+        ///<param name="System.Threading.CancellationToken cancellationToken">TODO: Describe System.Threading.CancellationToken cancellationToken here</param>
+        ///<param name="System.IProgress<Microsoft.VisualStudio.Shell.ServiceProgressData> progress">TODO: Describe System.IProgress<Microsoft.VisualStudio.Shell.ServiceProgressData> progress here</param>
+        ///<returns>System.Threading.Tasks.Task</returns>
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await this.RegisterCommandsAsync();

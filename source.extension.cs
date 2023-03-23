@@ -11,7 +11,7 @@ namespace CXCommenter
         public const string Name = "CXCommenter (Preview)";
         public const string Description = @"An  automatic Comment Generating Tool For Visual Studio.";
         public const string Language = "en-US";
-        public const string Version = "0.6";
+        public const string Version = "0.7";
         public const string Author = "Khaled Md Tuhidul Hossain";
         public const string Tags = "XML-commenter, Documentation-Generator, XML-Comments,Productivity-Enhancement,Code-Insights";
     }

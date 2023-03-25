@@ -1,18 +1,16 @@
-﻿using Community.VisualStudio.Toolkit;
-using EnvDTE;
+﻿using EnvDTE;
 using EnvDTE80;
-using Microsoft.VisualStudio.Shell;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 using Project = EnvDTE.Project;
 
 namespace CXCommenter
 {
     public class XmlCommenter
     {
+        public static string appName = Assembly.GetCallingAssembly().GetName().Name;
+        public static string appVersion = Assembly.GetCallingAssembly().GetName().Version.ToString();
 
         /// <summary>
         /// Function Name - CommentSolution
@@ -40,7 +38,7 @@ namespace CXCommenter
             {
                 if (item.SubProject != null)
                 {
-                    IterateThroughAllCodeElements(item.SubProject);
+                    //IterateThroughAllCodeElements(item.SubProject);
                 }
                 else if (item.ProjectItems != null && item.ProjectItems.Count > 0)
                 {
@@ -53,74 +51,6 @@ namespace CXCommenter
             }
         }
 
-
-
-        /// <summary>
-        /// Function Name - IterateThroughAllCodeElements
-        /// </summary>
-        ///<param name="EnvDTE.Project SubProject">TODO: Describe EnvDTE.Project SubProject here</param>
-        ///<returns>void</returns>
-        public static void IterateThroughAllCodeElements(Project SubProject)
-        {
-
-            foreach (CodeElement codeElement in SubProject.CodeModel.CodeElements)
-            {
-                if (codeElement.Kind == vsCMElement.vsCMElementNamespace)
-                {
-                    CodeNamespace codeNamespace = (CodeNamespace)codeElement;
-
-                    foreach (CodeElement typeElement in codeNamespace.Members)
-                    {
-                        if (typeElement.Kind == vsCMElement.vsCMElementClass ||
-                            typeElement.Kind == vsCMElement.vsCMElementStruct ||
-                            typeElement.Kind == vsCMElement.vsCMElementInterface)
-                        {
-                            CodeType codeType = (CodeType)typeElement;
-
-                            foreach (CodeElement memberElement in codeType.Members)
-                            {
-                                CodeElement2 codeElement2 = (CodeElement2)memberElement;
-
-                                if (memberElement.Kind == vsCMElement.vsCMElementFunction)
-                                {
-                                    CodeFunction codeFunction = (CodeFunction)memberElement;
-                                    string functionName = codeFunction.Name;
-                                    string returnType = codeFunction.Type.AsString;
-                                    List<string> parameters = new List<string>();
-                                    foreach (CodeParameter parameter in codeFunction.Parameters)
-                                    {
-                                        parameters.Add(parameter.Type.AsString + " " + parameter.Name);
-                                    }
-
-                                    string comment = "/// <summary>" + Environment.NewLine +
-                                                  "///  Funcation Name - " + functionName + Environment.NewLine +
-                                                  "/// </summary>" + Environment.NewLine +
-                                                  "///<param>" + parameters[0] + "</param>" + Environment.NewLine +
-                                                  "///<return>" + returnType + "</return>" + Environment.NewLine;
-
-                                    codeElement2.StartPoint.CreateEditPoint().Insert(comment);
-                                    codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
-                                    codeElement2.ProjectItem.Save();
-
-
-                                }
-                                else if (memberElement.Kind == vsCMElement.vsCMElementProperty)
-                                {
-                                    string comment = "/// <summary>" + Environment.NewLine +
-                                                   "/// Property Name - " + codeElement2.Name + Environment.NewLine +
-                                                   "/// </summary>" + Environment.NewLine;
-                                    codeElement2.StartPoint.CreateEditPoint().Insert(comment);
-                                    codeElement2.StartPoint.CreateEditPoint().SmartFormat(codeElement2.EndPoint);
-                                    codeElement2.ProjectItem.Save();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
         /// <summary>
         /// Function Name - IterateThroughAllCodeElementsInFolder
         /// </summary>
@@ -130,11 +60,7 @@ namespace CXCommenter
         {
             foreach (ProjectItem item in folder.ProjectItems)
             {
-                if (item.SubProject != null)
-                {
-                    IterateThroughAllCodeElements(item.SubProject);
-                }
-                else if (item.ProjectItems != null && item.ProjectItems.Count > 0)
+                if (item.ProjectItems != null && item.ProjectItems.Count > 0)
                 {
                     IterateThroughAllCodeElementsInFolder(item);
                 }
@@ -155,15 +81,23 @@ namespace CXCommenter
         {
             if (item.FileCodeModel != null)
             {
+                int loopCount = 0;
                 foreach (CodeElement codeElement in item.FileCodeModel.CodeElements)
                 {
+                    if (loopCount == 0)
+                    {
+                        CommentFileHeader(codeElement);
+                    }
+
                     if (codeElement.Kind == vsCMElement.vsCMElementNamespace)
                     {
                         CodeNamespace codeNamespace = (CodeNamespace)codeElement;
                         CommentCodeElementsInNamespace(codeNamespace);
                     }
+                    loopCount++;
                 }
             }
+
         }
 
 
@@ -174,6 +108,7 @@ namespace CXCommenter
         ///<returns>void</returns>
         public static void CommentCodeElementsInNamespace(CodeNamespace codeNamespace)
         {
+            CommentNamespace(codeNamespace);
             foreach (CodeElement typeElement in codeNamespace.Members)
             {
                 if (typeElement.Kind == vsCMElement.vsCMElementClass ||
@@ -216,7 +151,7 @@ namespace CXCommenter
                     {
                         foreach (string param in parameters)
                         {
-                            comment += "///<param name=\"" + param + "\">" + "TODO: Describe " + param + " here" + "</param>" + Environment.NewLine;
+                            comment += "///<param name=\"" + param + "\">" + ": Describe " + param + " here" + "</param>" + Environment.NewLine;
                         }
                     }
                     comment += "///<returns>" + returnType + "</returns>" + Environment.NewLine;
@@ -237,7 +172,42 @@ namespace CXCommenter
             }
         }
 
+        public static void CommentNamespace(CodeNamespace codeNamespace)
+        {
+            EditPoint startPoint = codeNamespace.StartPoint.CreateEditPoint();
+            EditPoint endPoint = codeNamespace.EndPoint.CreateEditPoint();
 
+            string comment = "/// <summary>" + Environment.NewLine +
+                             "/// Namespace Name - " + codeNamespace.Name + Environment.NewLine +
+                             "/// </summary>" + Environment.NewLine;
+
+            startPoint.Insert(comment);
+            startPoint.SmartFormat(endPoint);
+        }
+        public static void CommentFileHeader(CodeElement codeElement)
+        {
+            if (codeElement.StartPoint != null)
+            {
+                string fileName = codeElement.ProjectItem.FileNames[0];
+                string extension = Path.GetExtension(codeElement.ProjectItem.FileNames[0]);
+                EditPoint editPoint = (EditPoint)codeElement.StartPoint.CreateEditPoint();
+                string header = "//------------------------------------------------------------------------------" + Environment.NewLine +
+                                "// <auto-generated>" + Environment.NewLine +
+                                "//     This code was generated by " + appName + ": " + appVersion + Environment.NewLine +
+                                "// </auto-generated>" + Environment.NewLine +
+                                "//------------------------------------------------------------------------------" + Environment.NewLine;
+                string header2 = "// <copyright file=\"" + fileName + "." + extension + "\" company=\"PlaceholderCompany\">" + Environment.NewLine +
+                                 "// Copyright (c) PlaceholderCompany. All rights reserved." + Environment.NewLine +
+                                 "// </copyright>" + Environment.NewLine;
+
+                string fileContent = editPoint.GetText(codeElement.EndPoint);
+                if (!fileContent.StartsWith(header))
+                {
+                    editPoint.Insert(header);
+                    codeElement.ProjectItem.Save();
+                }
+            }
+        }
 
     }
 }

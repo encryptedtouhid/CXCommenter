@@ -21,7 +21,7 @@
 				<Icon guid="ImageCatalogGuid" id="Comment" />
 				<CommandFlag>IconIsMoniker</CommandFlag>
 				<Strings>
-					<ButtonText>Generate Comment</ButtonText>
+					<ButtonText>Generate Comment For Full Project</ButtonText>
 					<LocCanonicalName>.Edit.GenerateComment</LocCanonicalName>
 				</Strings>
 			</Button>

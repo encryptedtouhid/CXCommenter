@@ -22,7 +22,7 @@ namespace CXCommenter
         /// <returns>System.Threading.Tasks.Task.</returns>
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
-            XmlCommenter.CommentSolution();
+            XmlCommenter.CommentSingleFile();
         }
     }
 }

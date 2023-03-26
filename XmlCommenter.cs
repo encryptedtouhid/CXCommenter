@@ -38,6 +38,22 @@ namespace CXCommenter
             }
         }
 
+        public static void CommentSingleFile()
+        {
+            ProjectItem projectItem = null;
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            DTE2 dte = (DTE2)Package.GetGlobalService(typeof(DTE));
+            Document activeDocument = dte.ActiveDocument;
+
+            // Ensure the active document is a C# file
+            if (activeDocument.Language == "CSharp")
+            {
+                projectItem = activeDocument.ProjectItem;
+                CommentCodeElements(projectItem);
+            }
+        }
+
 
         /// <summary>
         ///     Function Name - CommentProject.

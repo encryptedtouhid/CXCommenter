@@ -12,6 +12,7 @@ using EnvDTE80;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Project = EnvDTE.Project;
 
 
@@ -56,6 +57,7 @@ namespace CXCommenter
             if (activeDocument.Language == "CSharp")
             {
                 projectItem = activeDocument.ProjectItem;
+                RemoveXmlCommentsFromActiveDocument(activeDocument);
                 CommentCodeElements(projectItem);
             }
         }
@@ -251,6 +253,26 @@ namespace CXCommenter
                     codeElement.ProjectItem.Save();
                 }
             }
+        }
+
+
+        public static void RemoveXmlCommentsFromActiveDocument(Document activeDocument)
+        {
+            TextDocument textDocument = (TextDocument)activeDocument.Object("TextDocument");
+            EditPoint editPoint = textDocument.StartPoint.CreateEditPoint();
+            string text = editPoint.GetText(textDocument.EndPoint);
+
+            // Define the regex pattern to match XML comments
+            string xmlCommentPattern = @"///.*\r?\n";
+
+            string xmlCommentPatternforHeader = @"//.*\r?\n";
+
+            string modifiedContentsfterheader = Regex.Replace(text, xmlCommentPatternforHeader, string.Empty);
+            // Remove XML comments
+            string modifiedContents = Regex.Replace(modifiedContentsfterheader, xmlCommentPattern, string.Empty);
+
+            // Replace the text in the active document
+            editPoint.ReplaceText(textDocument.EndPoint, modifiedContents, (int)vsEPReplaceTextOptions.vsEPReplaceTextKeepMarkers);
         }
 
     }

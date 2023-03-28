@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="CXCommenter.55051f0e-32a9-4a22-932f-1602de247f6b" Version="1.0.0.1" Language="en-US" Publisher="Khaled Md Tuhidul Hossain" />
+        <Identity Id="CXCommenter.55051f0e-32a9-4a22-932f-1602de247f6b" Version="1.0.0.2" Language="en-US" Publisher="Khaled Md Tuhidul Hossain" />
         <DisplayName>CXCommenter (Preview)</DisplayName>
         <Description xml:space="preserve">An  automatic Comment Generating Tool For Visual Studio.</Description>
         <License>Resources\license.txt</License>
@@ -11,16 +11,7 @@
         <Preview>true</Preview>
     </Metadata>
     <Installation>
-        <InstallationTarget Version="[16.0,17.0)" Id="Microsoft.VisualStudio.Pro">
-            <ProductArchitecture>x86</ProductArchitecture>
-        </InstallationTarget>
-        <InstallationTarget Version="[16.0,17.0)" Id="Microsoft.VisualStudio.Enterprise">
-            <ProductArchitecture>x86</ProductArchitecture>
-        </InstallationTarget>
-        <InstallationTarget Version="[16.0,17.0)" Id="Microsoft.VisualStudio.Community">
-            <ProductArchitecture>x86</ProductArchitecture>
-        </InstallationTarget>
-        <InstallationTarget Version="[18.0)" Id="Microsoft.VisualStudio.Community">
+        <InstallationTarget Version="[16.0,18.0)" Id="Microsoft.VisualStudio.Community">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
     </Installation>

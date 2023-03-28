@@ -34,8 +34,8 @@ jobs:
         run: nuget restore
       - name: Build
         env:
-         PFX_PASSWORD: ${{ secrets.PFX_PASSWORD }}
-         run: msbuild /p:configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=cxtoolkeyfile.pfx /p:Password=${{ env.PFX_PASSWORD }}
+          PFX_PASSWORD: ${{ secrets.PFX_PASSWORD }}
+        run: msbuild /p:configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=cxtoolkeyfile.pfx /p:Password=${{ env.PFX_PASSWORD }}
       - uses: actions/upload-artifact@v2
         with:
           name: CXCommenter.vsix

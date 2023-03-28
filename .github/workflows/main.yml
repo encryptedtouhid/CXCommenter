@@ -16,6 +16,12 @@ jobs:
         uses: nuget/setup-nuget@v1
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
+      - name: Import Key File
+        run: |
+          $pfxPath = Join-Path $env:GITHUB_WORKSPACE "cxtoolkeyfile.pfx"
+          $keyFilePath = Resolve-Path $pfxPath
+          $psScriptPath = Join-Path $env:GITHUB_WORKSPACE "ImportKeyFile.ps1"
+          & $psScriptPath -keyFilePath $keyFilePath -keyContainerName "VS_KEY_2ED2DC50414D2E82" -keyFilePassword "${{ secrets.PFX_PASSWORD }}"
       - name: Update version
         run: |
           (Get-Content -Path source.extension.vsixmanifest) |

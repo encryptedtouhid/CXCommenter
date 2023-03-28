@@ -1,6 +1,7 @@
 # CXCommenter: A Visual Studio Extension for Automatic XML Commenting
 
-CXCommenter is an open source Visual Studio extension written in C# that aims to make code commenting easier and more efficient. With CXCommenter, you can quickly and easily create well-formatted comments that provide better context and documentation for your code.
+CXCommenter is a Free Visual Studio extension written in C# that aims to make code commenting easier and more efficient. 
+With CXCommenter, you can quickly and easily create well-formatted comments that provide better context and documentation for your code.
 
 # Installation
 To install CXCommenter, follow these steps:

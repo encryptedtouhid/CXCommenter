@@ -7,7 +7,6 @@
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <KeyContainerName>VS_KEY_5BB5C1525FE587C0</KeyContainerName>
-     <AssemblyOriginatorKeyFile>cxtoolkeyfile.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>cxtoolkeyfile.pfx</AssemblyOriginatorKeyFile>

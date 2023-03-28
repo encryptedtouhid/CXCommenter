@@ -10,8 +10,10 @@ $cspParams = New-Object System.Security.Cryptography.CspParameters
 $cspParams.KeyContainerName = $keyContainerName
 $cspParams.Flags = [System.Security.Cryptography.CspProviderFlags]::UseMachineKeyStore
 
-$rsaProvider = New-Object System.Security.Cryptography.RSACryptoServiceProvider
-$rsaProvider.ImportParameters($cert.PrivateKey.ExportParameters($true))
+$rsaProvider = [System.Security.Cryptography.RSACryptoServiceProvider]::new($cspParams)
+
+$rsaCert = $cert.PublicKey.Key.CopyWithPrivateKey($cert.PrivateKey)
+$rsaProvider.ImportParameters($rsaCert.ExportParameters($true))
 $rsaProvider.PersistKeyInCsp = $true
 
 $null = $rsaProvider.ToXmlString($true)

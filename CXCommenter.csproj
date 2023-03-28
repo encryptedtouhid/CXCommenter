@@ -5,11 +5,12 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <KeyContainerName>VS_KEY_5BB5C1525FE587C0</KeyContainerName>
+    <SignAssembly>false</SignAssembly>
+   
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>cxtoolkeyfile.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -68,7 +69,6 @@
     <Compile Include="XmlCommenter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cxtoolkeyfile.pfx" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>

@@ -18,18 +18,18 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Update version
         run: |
-          (Get-Content -Path CXCommenter\source.extension.vsixmanifest) |
+          (Get-Content -Path \source.extension.vsixmanifest) |
             ForEach-Object {$_ -Replace '1.0.0', '1.0.${{ github.run_number }}'} |
-              Set-Content -Path CXCommenter\source.extension.vsixmanifest
-          (Get-Content -Path CXCommenter\Properties\AssemblyInfo.cs) |
+              Set-Content -Path \source.extension.vsixmanifest
+          (Get-Content -Path \Properties\AssemblyInfo.cs) |
             ForEach-Object {$_ -Replace '1.0.0', '1.0.${{ github.run_number }}'} |
-              Set-Content -Path CXCommenter\Properties\AssemblyInfo.cs
-          (Get-Content -Path CXCommenter\XmlCommenter.cs) |
+              Set-Content -Path \Properties\AssemblyInfo.cs
+          (Get-Content -Path \XmlCommenter.cs) |
             ForEach-Object {$_ -Replace '1.0.0', '1.0.${{ github.run_number }}'} |
-              Set-Content -Path CXCommenter\XmlCommenter.cs
-           (Get-Content -Path CXCommenter\Commands\MyCommand.cs) |
+              Set-Content -Path \XmlCommenter.cs
+           (Get-Content -Path \Commands\MyCommand.cs) |
             ForEach-Object {$_ -Replace '1.0.0', '1.0.${{ github.run_number }}'} |
-              Set-Content -Path CXCommenter\Commands\MyCommand.cs
+              Set-Content -Path \Commands\MyCommand.cs
       - name: Restore
         run: nuget restore
       - name: Build
